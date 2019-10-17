@@ -1,0 +1,21 @@
+{
+    "name": "phoenyx-studio/downloader",
+    "description": "Simple downloader for a webpage source code",
+    "type": "library",
+    "autoload": {
+        "psr-4": {"PhoenyxStudio\\": "src/"}
+    },
+    "require": {
+        "php": "^7.1",
+        "ext-dom": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "authors": [
+        {
+            "name": "Yuriy Serdyuk",
+            "email": "yury@serdyuk.pp.ua"
+        }
+    ]
+}
