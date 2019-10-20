@@ -19,7 +19,7 @@ composer require phoenyx-studio/downloader
 
 ```
  
-The followind variant is for composer.phar
+The following variant is for composer.phar
 
 ```
 php composer.phar require phoenyx-studio/downloader
