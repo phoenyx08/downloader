@@ -8,6 +8,8 @@
 
 namespace PhoenyxStudio\Downloader;
 
+use PhoenyxStudio\Downloader\Exception\RedirectException;
+use PhoenyxStudio\Downloader\Exception\CurlErrorException;
 
 class CurlDownloader implements IDownloader
 {
@@ -17,9 +19,20 @@ class CurlDownloader implements IDownloader
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
 
+        if (curl_errno($curl)) {
+            throw new CurlErrorException();
+        }
+
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if ($httpCode == 301 || $httpCode == 302) {
+            throw new RedirectException();
+        }
+
         if (empty($result)) {
             throw new \Exception('Downloader returned empty string');
         }
+
+        curl_close($curl);
 
         return $result;
     }

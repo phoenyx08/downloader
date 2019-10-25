@@ -39,7 +39,7 @@ class CurlDownloaderTest extends TestCase
     public function testDownloadMethodReturnsString(): void
     {
         $downloader = new CurlDownloader();
-        $this->assertIsString($downloader->download('http://google.com/'),
+        $this->assertIsString($downloader->download('http://www.google.com/'),
             'Download method has not returned string'
         );
     }
