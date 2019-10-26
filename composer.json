@@ -19,5 +19,10 @@
             "email": "yury@serdyuk.pp.ua"
         }
     ],
-    "license": "MIT"
+    "license": "MIT",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
 }
