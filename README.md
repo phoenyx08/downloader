@@ -25,3 +25,5 @@ The following variant is for composer.phar
 php composer.phar require phoenyx-studio/downloader
 ```
 
+
+[Changelog](https://github.com/phoenyx08/downloader/blob/master/CHANGELOG.md)
