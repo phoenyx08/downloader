@@ -9,6 +9,8 @@
 use PHPUnit\Framework\TestCase;
 use PhoenyxStudio\Downloader\IDownloader;
 use PhoenyxStudio\Downloader\CurlDownloader;
+use PhoenyxStudio\Downloader\Exception\RedirectException;
+use PhoenyxStudio\Downloader\Exception\CurlErrorException;
 
 class CurlDownloaderTest extends TestCase
 {
@@ -48,10 +50,37 @@ class CurlDownloaderTest extends TestCase
      * Test that download method throws exception if Url is incorrect
      * @throws Exception
      */
-    public function testDownloadMethodThrowsExceptionIfUrlIncorrect(): void
+    public function testDownloadMethodThrowsCurlErrorExceptionIfUrlIncorrect(): void
+    {
+        $downloader = new CurlDownloader();
+        $this->expectException(CurlErrorException::class);
+        $downloader->download('htt://google.com/');
+    }
+
+    /**
+     * Test that download method throws RedirectException if we request an Url
+     * which exactly returns 301 or 302 redirect
+     * @throws CurlErrorException
+     * @throws RedirectException
+     */
+    public function testDownloadMethodThrowsRedirectExceptionIfRedirectableUrlQueried(): void
+    {
+        $downloader = new CurlDownloader();
+        $this->expectException(RedirectException::class);
+        $downloader->download('http://cadeaubon.nl');
+    }
+
+    /**
+     * Test that in case of blank page with status 200 we get an \Exception
+     * @throws CurlErrorException
+     * @throws RedirectException
+     */
+    public function testDownloadMethodThrowsExceptionIfEmptyResponseReturned(): void
     {
         $downloader = new CurlDownloader();
         $this->expectException(\Exception::class);
-        $downloader->download('htt://google.com/');
+        $downloader->download('htt://google.com'); // @todo the test in fact incorrect because we intend to
+        // get empty page with response status 200. Using incorrect url here will lead to CurlErrorException not
+        // to \Exception. Need to find and use here some url which fits requirements.
     }
 }
