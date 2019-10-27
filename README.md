@@ -13,10 +13,8 @@ Helps you to download webpage source.
 The library is able to be required as a composer package.
 To add the library to your project use the following command:
 
-```
-
+``` 
 composer require phoenyx-studio/downloader
-
 ```
  
 The following variant is for composer.phar
