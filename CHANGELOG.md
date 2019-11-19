@@ -1,6 +1,10 @@
 Versions history
 ================
 
+### v.0.4.x
+
+* Blank page exeption
+
 ### v.0.3.x
 
 * Custom exceptions
