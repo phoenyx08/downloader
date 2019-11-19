@@ -41,7 +41,7 @@ class CurlDownloaderTest extends TestCase
     public function testDownloadMethodReturnsString(): void
     {
         $downloader = new CurlDownloader();
-        $this->assertIsString($downloader->download('http://www.google.com/'),
+        $this->assertIsString($downloader->download('http://testpoints.phoenyx-studio.pp.ua/blank-page.php'),
             'Download method has not returned string'
         );
     }
@@ -67,7 +67,7 @@ class CurlDownloaderTest extends TestCase
     {
         $downloader = new CurlDownloader();
         $this->expectException(RedirectException::class);
-        $downloader->download('http://cadeaubon.nl');
+        $downloader->download('http://testpoints.phoenyx-studio.pp.ua/redirect-301-source.php');
     }
 
     /**
