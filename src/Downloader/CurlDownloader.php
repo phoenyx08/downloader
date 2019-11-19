@@ -10,6 +10,7 @@ namespace PhoenyxStudio\Downloader;
 
 use PhoenyxStudio\Downloader\Exception\RedirectException;
 use PhoenyxStudio\Downloader\Exception\CurlErrorException;
+use PhoenyxStudio\Downloader\Exception\BlankPageException;
 
 class CurlDownloader implements IDownloader
 {
@@ -24,12 +25,13 @@ class CurlDownloader implements IDownloader
         }
 
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
         if ($httpCode == 301 || $httpCode == 302) {
             throw new RedirectException();
         }
 
-        if (empty($result)) {
-            throw new \Exception('Downloader returned empty string');
+        if (empty($result) && $httpCode == 200) {
+            throw new BlankPageException();
         }
 
         curl_close($curl);

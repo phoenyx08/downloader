@@ -1,6 +1,11 @@
 Versions history
 ================
 
+### v.1.0.x
+
+* Basic functionality ready
+* Tests cover basic functionality
+
 ### v.0.4.x
 
 * Blank page exeption

@@ -11,6 +11,7 @@ use PhoenyxStudio\Downloader\IDownloader;
 use PhoenyxStudio\Downloader\CurlDownloader;
 use PhoenyxStudio\Downloader\Exception\RedirectException;
 use PhoenyxStudio\Downloader\Exception\CurlErrorException;
+use PhoenyxStudio\Downloader\Exception\BlankPageException;
 
 class CurlDownloaderTest extends TestCase
 {
@@ -41,7 +42,7 @@ class CurlDownloaderTest extends TestCase
     public function testDownloadMethodReturnsString(): void
     {
         $downloader = new CurlDownloader();
-        $this->assertIsString($downloader->download('http://testpoints.phoenyx-studio.pp.ua/blank-page.php'),
+        $this->assertIsString($downloader->download('http://testpoints.phoenyx-studio.pp.ua/redirect-301-target.php'),
             'Download method has not returned string'
         );
     }
@@ -71,16 +72,14 @@ class CurlDownloaderTest extends TestCase
     }
 
     /**
-     * Test that in case of blank page with status 200 we get an \Exception
+     * Test that download method throws BlankPageException if we receive blank page with status 200
      * @throws CurlErrorException
      * @throws RedirectException
      */
     public function testDownloadMethodThrowsExceptionIfEmptyResponseReturned(): void
     {
         $downloader = new CurlDownloader();
-        $this->expectException(\Exception::class);
-        $downloader->download('htt://google.com'); // @todo the test in fact incorrect because we intend to
-        // get empty page with response status 200. Using incorrect url here will lead to CurlErrorException not
-        // to \Exception. Need to find and use here some url which fits requirements.
+        $this->expectException(BlankPageException::class);
+        $downloader->download('http://testpoints.phoenyx-studio.pp.ua/blank-page.php');
     }
 }
