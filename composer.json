@@ -29,5 +29,13 @@
         "platform": {
             "php": "7.1"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit --testdox ./tests"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run tests of the current project"
     }
 }
