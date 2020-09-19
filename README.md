@@ -1,6 +1,7 @@
 ![GitHub](https://img.shields.io/github/license/phoenyx08/downloader)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/phoenyx-studio/downloader)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/phoenyx08/downloader)
+![Travis build](https://travis-ci.com/phoenyx08/downloader.svg?branch=master)
 
 
 
