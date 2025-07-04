@@ -1,6 +1,10 @@
 Versions history
 ================
 
+### v.2.0.x
+
+* Support for PHP 8.3
+
 ### v.1.0.x
 
 * Basic functionality ready
